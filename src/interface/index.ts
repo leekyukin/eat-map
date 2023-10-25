@@ -1,10 +1,11 @@
 export interface StoreType {
-  tel_no: string;
-  cob_code_nm: string;
-  bizcnd_code_nm: string;
-  upso_nm: string;
-  x_cnts: string;
-  y_dnts: string;
-  rdn_code_nm: string;
-  crtfc_gbn_nm: string;
+  id: number;
+  phone: String | null; // tel_no
+  address: String | null; // rdn_code_nm
+  lat: String | null; // y_dnts
+  lng: String | null; // x_cnts
+  name: String | null; // upso_nm
+  category: String | null; // bizcnd_code_nm
+  storeType: String | null; // cob_code_nm
+  foodCertifyName: String | null; // crtfc_gbn_nmp
 }

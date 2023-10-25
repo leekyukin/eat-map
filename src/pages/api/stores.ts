@@ -1,5 +1,5 @@
 import { StoreType } from "@/interface";
-// import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -7,9 +7,7 @@ export default async function handler(
   res: NextApiResponse<StoreType[]>
 ) {
   const prisma = new PrismaClient();
-  const stores = (await import("../../data/store_data.json"))[
-    "DATA"
-  ] as StoreType[];
+  const stores = await prisma.store.findMany();
 
   res.status(200).json(stores);
 }

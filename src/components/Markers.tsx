@@ -1,8 +1,10 @@
+import { StoreType } from "@/interface";
+import { Store } from "@prisma/client";
 import { SetStateAction, useCallback, useEffect } from "react";
 
 interface MarkersProps {
   map: any;
-  stores: any[];
+  stores: StoreType[];
   setCurrentStore: React.Dispatch<SetStateAction<any>>;
 }
 
@@ -11,8 +13,8 @@ export function Markers({ map, stores, setCurrentStore }: MarkersProps) {
     if (map) {
       // 식당 데이터 마커 띄우기
       stores?.map((store) => {
-        var imageSrc = store?.bizcnd_code_nm
-            ? `/images/markers/${store?.bizcnd_code_nm}.png`
+        var imageSrc = store?.category
+            ? `/images/markers/${store?.category}.png`
             : "/images/markers/default.png",
           imageSize = new window.kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
           imageOption = { offset: new window.kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -26,8 +28,8 @@ export function Markers({ map, stores, setCurrentStore }: MarkersProps) {
 
         // 마커가 표시될 위치입니다
         var markerPosition = new window.kakao.maps.LatLng(
-          store?.y_dnts,
-          store?.x_cnts
+          store?.lat,
+          store?.lng
         );
 
         // 마커를 생성합니다
@@ -40,7 +42,7 @@ export function Markers({ map, stores, setCurrentStore }: MarkersProps) {
         marker.setMap(map);
 
         // 마커 커서가 오버되었을 때 마커 위에 표시할 인포윈도우 생성
-        var content = `<div class="infowindow">${store?.upso_nm}</div>`; // 인포윈도우에 표시될 내용
+        var content = `<div class="infowindow">${store?.name}</div>`; // 인포윈도우에 표시될 내용
 
         // 커스텀 오버레이를 생성합니다
         var customOverlay = new window.kakao.maps.CustomOverlay({
