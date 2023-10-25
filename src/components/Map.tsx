@@ -1,5 +1,6 @@
 // global kakao
 import Script from "next/script";
+import { SetStateAction } from "react";
 
 declare global {
   interface Window {
@@ -7,15 +8,25 @@ declare global {
   }
 }
 
-export default function Map() {
+const DEFAULT_LAT = 37.497175;
+const DEFAULT_LNG = 127.027926;
+
+interface MapProps {
+  setMap: React.Dispatch<SetStateAction<any>>;
+}
+
+export default function Map({ setMap }: MapProps) {
   const loadKakaoMap = () => {
+    // kakao map 띄우기
     window.kakao.maps.load(() => {
       const mapContainer = document.getElementById("map");
       const mapOption = {
-        center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+        center: new window.kakao.maps.LatLng(DEFAULT_LAT, DEFAULT_LNG),
         level: 3,
       };
-      new window.kakao.maps.Map(mapContainer, mapOption);
+      const map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+      setMap(map);
     });
   };
   return (

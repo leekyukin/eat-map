@@ -55,3 +55,7 @@
     @apply flex flex-col gap-4 items-start py-6 px-[18px];
   }
 }
+
+.infowindow {
+  @apply bg-blue-900 text-white text-sm px-2 py-1 rounded-sm text-center;
+}
