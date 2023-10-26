@@ -1,16 +1,16 @@
-import { Dispatch, SetStateAction } from "react";
+import { StoreType } from "@/interface";
 import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
 import {
+  AiOutlineCheck,
   AiOutlineClose,
   AiOutlineInfoCircle,
-  AiOutlineCheck,
   AiOutlinePhone,
 } from "react-icons/ai";
 import { HiOutlineMapPin } from "react-icons/hi2";
-import { StoreType } from "@/interface";
 
 interface StoreBoxProps {
-  store: StoreType;
+  store: StoreType | null;
   setStore: Dispatch<SetStateAction<any>>;
 }
 

@@ -1,5 +1,4 @@
 import { StoreType } from "@/interface";
-import { Store } from "@prisma/client";
 import { SetStateAction, useCallback, useEffect } from "react";
 
 interface MarkersProps {
