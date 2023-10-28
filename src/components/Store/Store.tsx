@@ -7,7 +7,7 @@ interface StoreProps {
 
 export default function Store({ store }: StoreProps) {
   return (
-    <li className="flex justify-between py-5 gap-x-6">
+    <li className="flex justify-between gap-x-6 py-5">
       <div className="flex gap-x-4">
         <Image
           src={
@@ -20,19 +20,19 @@ export default function Store({ store }: StoreProps) {
           alt="icon image"
         />
         <div>
-          <div className="text-sm font-semibold text-gray-900 leading-6">
-            {store?.storeType}
+          <div className="text-sm font-semibold leading-6 text-gray-900">
+            {store?.name}
           </div>
-          <div className="mt-1 text-xs font-semibold text-gray-500 truncate leading-5">
+          <div className="mt-1 truncate text-xs font-semibold leading-5 text-gray-500">
             {store?.storeType}
           </div>
         </div>
       </div>
       <div className="hidden sm:flex sm:flex-col sm:items-end">
-        <div className="text-sm font-semibold text-gray-900 leading-6">
+        <div className="text-sm font-semibold leading-6 text-gray-900">
           {store?.address}
         </div>
-        <div className="mt-1 text-xs font-semibold text-gray-500 truncate leading-5">
+        <div className="mt-1 truncate text-xs font-semibold leading-5 text-gray-500">
           {store?.phone || "번호없음"} | {store?.foodCertifyName} |{" "}
           {store?.category}
         </div>
