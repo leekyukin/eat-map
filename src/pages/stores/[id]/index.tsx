@@ -9,7 +9,6 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 
 export default function StorePage() {
-  const [map, setMap] = useState(null);
   const router = useRouter();
   const { id } = router.query;
 
@@ -100,8 +99,8 @@ export default function StorePage() {
       </div>
       {isSuccess && (
         <div className="mx-auto mb-20 max-h-[600px] w-full max-w-5xl overflow-hidden">
-          <Map setMap={setMap} lat={store?.lat} lng={store?.lng} zoom={1} />
-          <Marker map={map} store={store} />
+          <Map lat={store?.lat} lng={store?.lng} zoom={1} />
+          <Marker store={store} />
         </div>
       )}
     </div>

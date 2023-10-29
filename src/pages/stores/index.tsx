@@ -1,3 +1,4 @@
+import { searchState } from "@/atom";
 import { ErrorMessage } from "@/components/ErrorMessage";
 import Loader from "@/components/Loader";
 import Loading from "@/components/Loading";
@@ -5,22 +6,19 @@ import SearchFilter from "@/components/SearchFIlter";
 import StoreList from "@/components/Store/StoreList";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useInfiniteQuery } from "react-query";
+import { useRecoilValue } from "recoil";
 
 export default function StoreListPage() {
-  const router = useRouter();
-  const { page = "1" }: any = router.query;
   const ref = useRef<HTMLDivElement | null>(null);
   const pageRef = useIntersectionObserver(ref, {});
   const isPageEnd = pageRef?.isIntersecting;
-  const [q, setQ] = useState<string | null>(null);
-  const [district, setDistrict] = useState<string | null>(null);
+  const searchValue = useRecoilValue(searchState);
 
   const searchParams = {
-    q: q,
-    district: district,
+    q: searchValue?.q,
+    district: searchValue?.district,
   };
 
   // const {
@@ -80,7 +78,7 @@ export default function StoreListPage() {
 
   return (
     <div className="mx-auto px-4 py-8 md:max-w-4xl">
-      <SearchFilter setQ={setQ} setDistrict={setDistrict} />
+      <SearchFilter />
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
           <Loading />

@@ -1,13 +1,16 @@
+import { currentStoreState, locationState, mapState } from "@/atom";
 import { StoreType } from "@/interface";
-import { SetStateAction, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
 interface MarkersProps {
-  map: any;
   stores: StoreType[];
-  setCurrentStore: React.Dispatch<SetStateAction<any>>;
 }
 
-export function Markers({ map, stores, setCurrentStore }: MarkersProps) {
+export function Markers({ stores }: MarkersProps) {
+  const [location, setLocation] = useRecoilState(locationState);
+  const map = useRecoilValue(mapState);
+  const setCurrentStore = useSetRecoilState(currentStoreState);
   const loadKakaoMarkers = useCallback(() => {
     if (map) {
       // 식당 데이터 마커 띄우기
@@ -22,13 +25,13 @@ export function Markers({ map, stores, setCurrentStore }: MarkersProps) {
         var markerImage = new window.kakao.maps.MarkerImage(
           imageSrc,
           imageSize,
-          imageOption
+          imageOption,
         );
 
         // 마커가 표시될 위치입니다
         var markerPosition = new window.kakao.maps.LatLng(
           store?.lat,
-          store?.lng
+          store?.lng,
         );
 
         // 마커를 생성합니다
@@ -65,10 +68,15 @@ export function Markers({ map, stores, setCurrentStore }: MarkersProps) {
 
         window.kakao.maps.event.addListener(marker, "click", function () {
           setCurrentStore(store);
+          setLocation({
+            ...location,
+            lat: store.lat,
+            lng: store.lng,
+          });
         });
       });
     }
-  }, [map, setCurrentStore, stores]);
+  }, [location, map, setCurrentStore, setLocation, stores]);
 
   useEffect(() => {
     loadKakaoMarkers();
