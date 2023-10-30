@@ -11,12 +11,18 @@ export interface StoreType {
   likes?: LikeType[];
 }
 
-interface LikeType {
+export interface LikeType {
   id: number;
   storeId: number;
   userId: number;
+  store: StoreType;
 }
 
+export interface LikeApiResponse {
+  page?: number;
+  data: LikeType[];
+  totalPage?: number;
+}
 export interface StoreApiResponse {
   page?: number;
   data: StoreType[];

@@ -1,20 +1,21 @@
 import Link from "next/link";
 
 interface PaginationProps {
-  total: number;
+  total?: number;
   page: string;
+  pathname: string;
 }
 
-export default function Pagination({ total, page }: PaginationProps) {
+export default function Pagination({ total, page, pathname }: PaginationProps) {
   return (
-    <div className="flex flex-wrap justify-center py-6 my-10 text-black bg-white gap-3">
+    <div className="my-10 flex flex-wrap justify-center gap-3 bg-white py-6 text-black">
       {total <= 10 ? (
         [...Array(total)].map((e, i) => (
-          <Link href={{ pathname: "/stores", query: { page: i + 1 } }} key={i}>
+          <Link href={{ pathname: pathname, query: { page: i + 1 } }} key={i}>
             <span
-              className={`px-3 py-2 rounded border shadow-sm bg-white ${
+              className={`rounded border bg-white px-3 py-2 shadow-sm ${
                 i + 1 === parseInt(page, 10)
-                  ? "text-blue-600 font-bold"
+                  ? "font-bold text-blue-600"
                   : "text-gray-300"
               }`}
               key={i}
@@ -28,18 +29,18 @@ export default function Pagination({ total, page }: PaginationProps) {
           {parseInt(page) > 1 && (
             <Link
               href={{
-                pathname: "/stores",
+                pathname: pathname,
                 query: { page: parseInt(page) - 1 },
               }}
             >
-              <span className={`px-3 py-2 rounded border shadow-sm bg-white`}>
+              <span className={`rounded border bg-white px-3 py-2 shadow-sm`}>
                 이전
               </span>
             </Link>
           )}
-          <Link href={{ pathname: "/stores", query: { page: page } }}>
+          <Link href={{ pathname: pathname, query: { page: page } }}>
             <span
-              className={`px-3 py-2 rounded border shadow-sm bg-white text-blue-600`}
+              className={`rounded border bg-white px-3 py-2 text-blue-600 shadow-sm`}
             >
               {page}
             </span>
@@ -47,11 +48,11 @@ export default function Pagination({ total, page }: PaginationProps) {
           {parseInt(page) < total && (
             <Link
               href={{
-                pathname: "/stores",
+                pathname: pathname,
                 query: { page: parseInt(page) + 1 },
               }}
             >
-              <span className={`px-3 py-2 rounded border shadow-sm bg-white`}>
+              <span className={`rounded border bg-white px-3 py-2 shadow-sm`}>
                 다음
               </span>
             </Link>
