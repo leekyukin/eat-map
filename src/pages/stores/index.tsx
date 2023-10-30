@@ -1,8 +1,8 @@
 import { searchState } from "@/atom";
 import { ErrorMessage } from "@/components/ErrorMessage";
-import Loader from "@/components/Loader";
-import Loading from "@/components/Loading";
-import SearchFilter from "@/components/SearchFIlter";
+import Loader from "@/components/Loader/Loader";
+import Loading from "@/components/Loader/Loading";
+import SearchFilter from "@/components/Store/SearchFIlter";
 import StoreList from "@/components/Store/StoreList";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import axios from "axios";

@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 import { HiOutlineMapPin } from "react-icons/hi2";
 import { useRecoilState } from "recoil";
-import Like from "./Like";
+import Like from "../Like";
 
 export default function StoreBox() {
   const [store, setStore] = useRecoilState(currentStoreState);

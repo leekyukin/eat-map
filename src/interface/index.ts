@@ -1,3 +1,5 @@
+import { User } from "@prisma/client";
+
 export interface StoreType {
   id: number;
   phone: string | null; // tel_no
@@ -20,7 +22,29 @@ export interface LikeType {
 
 export interface LikeApiResponse {
   page?: number;
-  data: LikeType[];
+  data: CommentType[];
+  totalPage?: number;
+}
+
+export interface CommentType {
+  id: number;
+  storeId: number;
+  userId: number;
+  store?: StoreType;
+  body: string;
+  user: UserType;
+}
+
+export interface UserType {
+  id: number;
+  email?: string | null;
+  image?: string | null;
+  name?: string | null;
+}
+
+export interface CommentApiResponse {
+  page?: number;
+  data: CommentType[];
   totalPage?: number;
 }
 export interface StoreApiResponse {

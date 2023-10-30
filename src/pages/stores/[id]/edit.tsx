@@ -1,5 +1,5 @@
 import { ErrorMessage } from "@/components/ErrorMessage";
-import Loader from "@/components/Loader";
+import Loader from "@/components/Loader/Loader";
 import { CATEGORY_ARR, FOOD_CERTIFY_ARR, STORE_TYPE_ARR } from "@/data/store";
 import { StoreType } from "@/interface";
 import axios from "axios";

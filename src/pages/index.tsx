@@ -1,6 +1,7 @@
-import Map from "@/components/Map";
-import { Markers } from "@/components/Markers";
-import StoreBox from "@/components/StoreBox";
+import CurrentLocationButton from "@/components/KakaoMap/CurrentLocationButton";
+import Map from "@/components/KakaoMap/Map";
+import { Markers } from "@/components/KakaoMap/Markers";
+import StoreBox from "@/components/Store/StoreBox";
 import { StoreType } from "@/interface";
 import axios from "axios";
 
@@ -10,6 +11,7 @@ export default function Home({ stores }: { stores: StoreType[] }) {
       <Map />
       <Markers stores={stores} />
       <StoreBox />
+      <CurrentLocationButton />
     </>
   );
 }

@@ -1,8 +1,9 @@
+import Comments from "@/components/Comments/Comments";
 import { ErrorMessage } from "@/components/ErrorMessage";
+import { Marker } from "@/components/KakaoMap/Maker";
+import Map from "@/components/KakaoMap/Map";
 import Like from "@/components/Like";
-import Loader from "@/components/Loader";
-import { Marker } from "@/components/Maker";
-import Map from "@/components/Map";
+import Loader from "@/components/Loader/Loader";
 import { StoreType } from "@/interface";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -139,10 +140,13 @@ export default function StorePage() {
         </dl>
       </div>
       {isSuccess && (
-        <div className="mx-auto mb-20 max-h-[600px] w-full max-w-5xl overflow-hidden">
-          <Map lat={store?.lat} lng={store?.lng} zoom={1} />
-          <Marker store={store} />
-        </div>
+        <>
+          <div className="mx-auto mb-20 max-h-[600px] w-full max-w-5xl overflow-hidden">
+            <Map lat={store?.lat} lng={store?.lng} zoom={1} />
+            <Marker store={store} />
+          </div>
+          <Comments storeId={store.id} />
+        </>
       )}
     </div>
   );

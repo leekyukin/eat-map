@@ -1,7 +1,7 @@
 import { ErrorMessage } from "@/components/ErrorMessage";
-import Loader from "@/components/Loader";
-import { Marker } from "@/components/Maker";
-import Map from "@/components/Map";
+import Loader from "@/components/Loader/Loader";
+import { Marker } from "@/components/KakaoMap/Maker";
+import Map from "@/components/KakaoMap/Map";
 import { StoreType } from "@/interface";
 import axios from "axios";
 import { useSession } from "next-auth/react";

@@ -1,5 +1,5 @@
 import { ErrorMessage } from "@/components/ErrorMessage";
-import Loading from "@/components/Loading";
+import Loading from "@/components/Loader/Loading";
 import Pagination from "@/components/Pagenation";
 import Store from "@/components/Store/Store";
 import { LikeApiResponse, LikeType } from "@/interface";

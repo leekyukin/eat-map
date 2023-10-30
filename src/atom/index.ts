@@ -5,7 +5,7 @@ const DEFAULT_LAT = "37.497175";
 const DEFAULT_LNG = "127.027926";
 const DEFAULT_ZOOM = 3;
 
-export const mapState = atom({
+export const mapState = atom<any>({
   key: "map",
   default: null,
   dangerouslyAllowMutability: true,
