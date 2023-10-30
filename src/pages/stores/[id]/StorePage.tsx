@@ -1,5 +1,4 @@
 import { ErrorMessage } from "@/components/ErrorMessage";
-import Like from "@/components/Like";
 import Loader from "@/components/Loader";
 import { Marker } from "@/components/Maker";
 import Map from "@/components/Map";
@@ -20,14 +19,8 @@ export default function StorePage() {
     const confirm = window.confirm("해당 가게를 삭제하시겠습니까?");
     if (confirm) {
       try {
-        const result = await axios.delete(`/stores/delete?id=${store?.id}`);
-
-        if (result.status === 200) {
-          toast.success("해당 가게를 삭제했습니다.");
-          router.replace("/");
-        } else {
-          toast.error("다시 시도해주세요.");
-        }
+        const result = await axios.delete(`/stores/delete?id=${store.id}`);
+        toast.success("해당 가게를 삭제했습니다.");
       } catch (e) {
         console.log(e);
         toast.error("다시 시도해주세요.");
@@ -69,9 +62,8 @@ export default function StorePage() {
             {store?.category}
           </p>
         </div>
-        {status === "authenticated" && (
+        {status === "authenticated" && store && (
           <div className="flex items-center gap-4 px-4 py-3 text-sm">
-            <Like storeId={store?.id} />
             <Link className="underline" href={`/stores/${store?.id}/edit`}>
               수정
             </Link>
