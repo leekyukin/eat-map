@@ -1,6 +1,6 @@
 import { PathnameContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const router = useRouter();

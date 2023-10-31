@@ -1,3 +1,5 @@
+"use client";
+
 import Comments from "@/components/Comments/Comments";
 import { ErrorMessage } from "@/components/ErrorMessage";
 import { Marker } from "@/components/KakaoMap/Maker";
@@ -8,13 +10,13 @@ import { StoreType } from "@/interface";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
-export default function StorePage() {
+export default function StorePage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const { id } = router.query;
+  const id = params.id;
   const { status } = useSession();
 
   const handleDelete = async () => {

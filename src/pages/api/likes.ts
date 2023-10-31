@@ -1,8 +1,9 @@
+import { authOptions } from "@/app/api/auth/[...next-auth]/route";
 import prisma from "@/db";
 import { LikeApiResponse, LikeType } from "@/interface";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./auth/[...nextauth]";
+import { AuthOptions } from "next-auth";
 
 interface ResponseType {
   page?: string;
@@ -58,7 +59,7 @@ export default async function handler(
     });
     const { page = "1", limit = "10" }: ResponseType = req.query;
     const skipPage = parseInt(page) - 1;
-    const likes = await prisma.like.findMany({
+    const likes: LikeType[] = await prisma.like.findMany({
       orderBy: { createdAt: "desc" },
       where: {
         userId,
@@ -66,8 +67,8 @@ export default async function handler(
       include: {
         store: true,
       },
-      skip: skipPage * parseInt(limit),
       take: parseInt(limit),
+      skip: skipPage * parseInt(limit),
     });
     return res.status(200).json({
       data: likes,

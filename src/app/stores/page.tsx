@@ -1,3 +1,5 @@
+"use client";
+
 import { searchState } from "@/atom";
 import { ErrorMessage } from "@/components/ErrorMessage";
 import Loader from "@/components/Loader/Loader";

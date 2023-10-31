@@ -1,15 +1,21 @@
+"use client";
+
 import { ErrorMessage } from "@/components/ErrorMessage";
 import Loading from "@/components/Loader/Loading";
 import Pagination from "@/components/Pagenation";
 import Store from "@/components/Store/Store";
 import { LikeApiResponse, LikeType } from "@/interface";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { useQuery, useQueryErrorResetBoundary } from "react-query";
+import { useQuery } from "react-query";
 
-export default function LikesPage() {
-  const router = useRouter();
-  const { page = "1" } = router.query;
+interface LikesPageProps {
+  params: {
+    page: string;
+  };
+}
+
+export default function LikesPage({ params }: LikesPageProps) {
+  const page = params.page || "1";
 
   const fetchLikes = async () => {
     const { data } = await axios(`/api/likes?limit=10&page=${page}`);
@@ -25,9 +31,6 @@ export default function LikesPage() {
   if (isError) {
     <ErrorMessage message="다시 시도해주세요." />;
   }
-
-  console.log("this is data: ");
-  console.log(likes);
 
   return (
     <div className="mx-auto px-4 py-8 md:max-w-4xl">

@@ -1,15 +1,19 @@
-import { useSession } from "next-auth/react";
-import CommentForm from "./CommentForm";
-import { useRouter } from "next/router";
-import axios from "axios";
 import { CommentApiResponse } from "@/interface";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 import { useQuery } from "react-query";
-import { CommentsProps } from ".";
+import CommentForm from "./CommentForm";
 
-export default function Comments({ storeId }: CommentsProps) {
+interface CommentsProps {
+  storeId: number;
+  params?: {
+    page: string;
+  };
+}
+
+export default function Comments({ storeId, params }: CommentsProps) {
   const { status } = useSession();
-  const router = useRouter();
-  const { page = "1" }: any = router.query;
+  const page = params?.page || "1";
 
   const fetchComments = async () => {
     const { data } = await axios(
@@ -30,7 +34,7 @@ export default function Comments({ storeId }: CommentsProps) {
         {status === "authenticated" && <CommentForm storeId={storeId} />}
       </div>
       <div className="my-10">
-        {comments?.data?.length > 0 ? (
+        {comments?.data && comments?.data?.length > 0 ? (
           ""
         ) : (
           <div className="border p-4 text-center text-sm font-semibold text-gray-500">

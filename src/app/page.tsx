@@ -3,9 +3,10 @@ import Map from "@/components/KakaoMap/Map";
 import { Markers } from "@/components/KakaoMap/Markers";
 import StoreBox from "@/components/Store/StoreBox";
 import { StoreType } from "@/interface";
-import axios from "axios";
 
-export default function Home({ stores }: { stores: StoreType[] }) {
+export default async function Home() {
+  const stores: StoreType[] = await getData();
+
   return (
     <>
       <Map />
@@ -16,10 +17,14 @@ export default function Home({ stores }: { stores: StoreType[] }) {
   );
 }
 
-export async function getServerSideProps() {
-  const stores = await axios(`${process.env.NEXT_PUBLIC_API_URL}/api/stores`);
+async function getData() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/stores`, {
+    cache: "no-cache",
+  });
 
-  return {
-    props: { stores: stores.data },
-  };
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
 }
