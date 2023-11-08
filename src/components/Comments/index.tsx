@@ -43,7 +43,7 @@ export default function Comments({ storeId, params }: CommentsProps) {
             >
               <div>
                 <img
-                  src={comment.user.image ?? "/images/markers/default.png"}
+                  src={comment?.user?.image ?? "/images/markers/default.png"}
                   width={40}
                   height={40}
                   className="bg-gray-10 rounded-full"

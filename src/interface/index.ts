@@ -15,7 +15,7 @@ export interface LikeType {
   id: number;
   storeId: number;
   userId: number;
-  store: StoreType;
+  store?: StoreType;
 }
 
 export interface LikeApiResponse {
@@ -30,7 +30,7 @@ export interface CommentType {
   userId: number;
   store?: StoreType;
   body: string;
-  user: UserType;
+  user?: UserType;
 }
 
 export interface UserType {

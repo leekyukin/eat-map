@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
 interface LikeProps {
-  storeId: Number;
+  storeId?: number;
 }
 
 export default function Like({ storeId }: LikeProps) {

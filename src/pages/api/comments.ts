@@ -1,4 +1,4 @@
-import { authOptions } from "@/app/api/auth/[...next-auth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/db";
 import { CommentApiResponse, CommentType } from "@/interface";
 import { NextApiRequest, NextApiResponse } from "next";

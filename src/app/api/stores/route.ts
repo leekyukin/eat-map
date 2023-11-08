@@ -2,7 +2,6 @@ import prisma from "@/db";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
-import NextAuth from "next-auth/next";
 
 export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
@@ -41,7 +40,7 @@ export const GET = async (req: Request) => {
       },
       include: {
         likes: {
-          where: session ? { userId: parseInt(session.user.id) } : {},
+          where: session ? { userId: session.user.id } : {},
         },
       },
     });

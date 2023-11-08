@@ -9,7 +9,7 @@ interface PaginationProps {
 export default function Pagination({ total, page, pathname }: PaginationProps) {
   return (
     <div className="my-10 flex flex-wrap justify-center gap-3 bg-white py-6 text-black">
-      {total <= 10 ? (
+      {total && total <= 10 ? (
         [...Array(total)].map((e, i) => (
           <Link href={{ pathname: pathname, query: { page: i + 1 } }} key={i}>
             <span
@@ -45,7 +45,7 @@ export default function Pagination({ total, page, pathname }: PaginationProps) {
               {page}
             </span>
           </Link>
-          {parseInt(page) < total && (
+          {total && parseInt(page) < total && (
             <Link
               href={{
                 pathname: pathname,

@@ -1,9 +1,8 @@
-import { authOptions } from "@/app/api/auth/[...next-auth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/db";
 import { LikeApiResponse, LikeType } from "@/interface";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
-import { AuthOptions } from "next-auth";
 
 interface ResponseType {
   page?: string;
@@ -16,7 +15,7 @@ export default async function handler(
 ) {
   const session = await getServerSession(req, res, authOptions);
 
-  const userId = parseInt(session?.user.id);
+  const userId = session?.user.id;
 
   if (!session?.user) {
     return res.status(401);
